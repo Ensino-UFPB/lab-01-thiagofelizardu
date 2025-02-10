@@ -1,1 +1,272 @@
 Coloque aqui todas as respostas das práticas indicadas no README.md
+
+**Questão 1. route**
+
+    1. Qual a sua rede e máscara?
+        rede : 172.18.0.0
+        máscara: 255.255.0.0
+
+    2. Qual o seu roteador padrão (default gateway)?
+        gateway : 172.18.0.1
+
+    3. Quantas rotas configuradas tem seu computador?
+        tem 2 rotas configuradas
+
+**Questão 2. ip (ipconfig/ifconfig)**
+
+    1. Qual o IP da interface de rede?
+        172.18.0.2
+
+    2. Qual a rede e a máscara?
+        172.18.0.0
+
+    3. Qual o nome da interface de rede principal?
+        etho 0
+
+**Questão 3. nslookup**
+
+    nslookup www.google.com
+        ip: 172.217..29.228
+
+    nslookup www.whitehouse.gov
+        ip: 192.0.66.51
+
+    nslookup www.rnp.br
+        ip: 10.18.27.22
+
+    nslookup www.ufpb.br
+        ip: 150.165.254.52
+
+**Questão 4. ping**
+
+    1. Teste a conectividade da sua rede local:
+        Pingue a interface de loopback: ping 127.0.0.1. Qual o tempo de resposta?
+
+        Terminal :
+            96 packets transmitted, 96 packets received, 0% packet loss
+            round-trip min/avg/max/stddev = 0.031/0.038/0.147/0.000 ms
+
+        Reposta :
+            O tempo médio de resposta foi 0.038 ms,
+
+        Pingue seu próprio endereço IP dentro do container. Qual o tempo de resposta?
+            Terminal:
+            19 packets transmitted, 19 packets received, 0% packet loss
+            round-trip min/avg/max/stddev = 0.031/0.036/0.102/0.000 m
+
+        Resposta:
+            O tempo médio de resposta foi 0.036 ms
+
+    2. Teste a conectividade com a Internet:
+        Compare os tempos de resposta para diferentes sites:
+            ping www.ufpb.br
+                Terminal:
+                    33 packets transmitted, 33 packets received, 0% packet loss
+                    round-trip min/avg/max/stddev = 25.193/37.371/47.057/6.258 ms
+
+                Reposta:
+                    O Tempo médio de resposta: 37.371 ms.
+
+            ping www.yahoo.com
+                Terminal:
+                    21 packets transmitted, 21 packets received, 0% packet loss
+                    round-trip min/avg/max/stddev = 168.834/169.651/172.395/0.671 ms
+                
+                Reposta:
+                    O tempo médio de resposta foi de 169.651 ms
+
+            ping www.brasil.gov.br
+                Terminal:
+                    39 packets transmitted, 39 packets received, 0% packet loss
+                    round-trip min/avg/max/stddev = 74.566/75.428/77.109/0.466 ms
+                
+                Reposta:
+                    O tempo médio de resposta foi de 75.428ms
+
+            ping www.dce.ufpb.br
+                Terminal:
+                    root@735e27babb20:/# ping www.dce.ufpb.br
+                    ping: unknown host  
+
+                Reposta:
+                O tempo médio de resposta foi "unknown host" 
+
+
+        O que pode influenciar as diferenças nos tempos?
+            As diferenças nos tempos de resposta são influenciadas principalmente pela
+            infraestrutura de rede, carga do servidor, roteamento e qualidade da conexão de Internet. No caso de www.dce.ufpb.br,
+            o problema parece estar relacionado à resolução de DNS ou à inexistência do domínio.
+
+**Questão 5. traceroute**
+
+    1. Execute traceroutenos seguintes domínios
+
+        traceroute www.google.com
+            Terminal:
+                root@735e27babb20:/# traceroute www.google.com
+                traceroute to www.google.com (172.217.29.196), 30 hops max, 60 byte packets
+                1  172.18.0.1 (172.18.0.1)  0.500 ms  0.462 ms  0.441 ms
+                2  * * *
+                3  * * *
+                4  * * *
+                5  * * *
+                6  * * *
+                7  * * *
+                8  * * *
+                9  * * *
+                10  * * *
+                11  * * *
+                12  * * *
+                13  * * *
+                14  * * *
+                15  * * *
+                16  * * *
+                17  * * *
+                18  * * *
+                19  * * *
+                20  * * *
+                21  * * *
+                22  * * *
+                23  * * *
+                24  * * *
+                25  * * *
+                26  * * *
+                27  * * *
+                28  * * *
+                29  * * *
+                30  * * *
+            root@735e27babb20:/#
+
+        traceroute www.rnp.br
+            Terminal:
+                root@735e27babb20:/# traceroute www.rnp.br
+                traceroute to www.rnp.br (104.18.27.22), 30 hops max, 60 byte packets
+                1  172.18.0.1 (172.18.0.1)  0.387 ms  0.340 ms  0.318 ms
+                2  * * *
+                3  * * *
+                4  * * *
+                5  * * *
+                6  * * *
+                7  * * *
+                8  * * *
+                9  * * *
+                10  * * *
+                11  * * *
+                12  * * *
+                13  * * *
+                14  * * *
+                15  * * *
+                16  * * *
+                17  * * *
+                18  * * *
+                19  * * *
+                20  * * *
+                21  * * *
+                22  * * *
+                23  * * *
+                24  * * *
+                25  * * *
+                26  * * *
+                27  * * *
+                28  * * *
+                29  * * *
+                30  * * *
+                root@735e27babb20:/#
+        
+        traceroute www.whitehouse.gov
+            Terminal:
+                root@735e27babb20:/# traceroute www.whitehouse.gov
+                traceroute to www.whitehouse.gov (192.0.66.51), 30 hops max, 60 byte packets
+                1  172.18.0.1 (172.18.0.1)  0.441 ms  0.408 ms  0.385 ms
+                2  * * *
+                3  * * *
+                4  * * *
+                5  * * *
+                6  * * *
+                7  * * *
+                8  * * *
+                9  * * *
+                10  * * *
+                11  * * *
+                12  * * *
+                13  * * *
+                14  * * *
+                15  * * *
+                16  * * *
+                17  * * *
+                18  * * *
+                19  * * *
+                20  * * *
+                21  * * *
+                22  * * *
+                23  * * *
+                24  * * *
+                25  * * *
+                26  * * *
+                27  * * *
+                28  * * *
+                29  * * *
+                30  * * *
+                root@735e27babb20:/#
+    Por que alguns roteadores ao longo do caminho não respondem?
+
+        Muitos roteadores são configurados para ignorar pacotes ICMP
+        Quando um roteador ignora pacotes ICMP, o traceroute não recebe uma resposta, resultando em * * *.
+
+    Isso significa necessariamente que há um problema na rede?
+
+        Não pois Isso é um comportamento comum em redes modernas, 
+        especialmente em redes corporativas, governamentais ou de provedores de Internet.
+
+**Questão 6. netstat**
+   1.Liste todas as conexões e portas de escuta:
+
+        Terminal:   
+            root@735e27babb20:/# netstat -tulnp  # Linux
+            Active Internet connections (only servers)
+            Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+            tcp        0      0 127.0.0.11:43595        0.0.0.0:*               LISTEN      -
+            udp        0      0 127.0.0.11:45107        0.0.0.0:*                           -
+
+    2.Mostre a tabela de roteamento
+        Terminal: 
+            root@735e27babb20:/# netstat -r
+            Kernel IP routing table
+            Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+            default         172.18.0.1      0.0.0.0         UG        0 0          0 eth0
+            172.18.0.0      0.0.0.0         255.255.0.0     U         0 0          0 eth0
+
+    Respostas :
+        Os resultados são os mesmos do comando route?
+        Há informações adicionais?
+        Sim, os resultados são bastante semelhantes, mas o comando netstat -r fornece informações adicionais sobre a performance e o comportamento da rede,
+        além de um formato de saída mais detalhado. O route é mais simples e direto.
+
+**Questão 7. telnet**
+        Terminal:
+                root@735e27babb20:/# telnet www.ufpb.br 80
+                Trying 150.165.254.52...
+                Connected to www.ufpb.br.
+                Escape character is '^]'.
+                Connection closed by foreign host.
+            O servidor respondeu? O serviço está ativo?
+                foi bem-sucedido na primeira parte, já que a conexão foi estabelecida mas a conexão foi fechada rapidamente pelo servidor, 
+                conforme a mensagem Connection closed by foreign host
+
+
+                root@735e27babb20:/# telnet www.dce.ufpb.br 21
+                Server lookup failure:  www.dce.ufpb.br:21, Name or service not known
+                root@735e27babb20:/#
+
+            Você conseguiu conexão? Se não, como diferenciar um problema de rede de um problema no serviço?
+            Não teve conexão bem sucedida .
+
+**Questão 8. mtr**
+    4. Pesquisa como interpretar os resultados deste utilitário e explique como esses dados podem ajudar a diagnosticar problemas na rede.
+       R: Perda de pacotes e alta latência indicam pontos de falha ou congestionamento na rede, ajudando a localizar a origem de problemas de conectividade e desempenho.
+
+
+
+
+
+
